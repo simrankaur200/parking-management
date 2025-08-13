@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Member Dashboard - ABC Parking System</title>
+
+  <link rel="stylesheet" href="#{resource['css/style_datetime_gap.css']}" />
+  <link rel="stylesheet" href="#{resource['css/style_cities.css']}" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+  .main-nav {
+  font-size: 10px; /* Reduce font size */
+  display: flex;
+  gap: 8px; /* Reduce spacing between links */
+  align-items: center;
+}
+
+.main-nav a {
+  padding: 6px 8px; /* Reduce padding inside each link */
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+  
+   .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index:1000;
+  }
+
+  .welcome-member {
+    font-size: 16px;
+    font-weight: bold;
+    color: blue;
+  }
+
+  .profile-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+    cursor: pointer;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .dropdown-menu a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: normal;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #f1f1f1;
+  }
+
+  .profile-dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+    .function-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .function-buttons a {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .function-buttons a:hover {
+      background-color: #0056b3;
+    }
+
+    .logout-link {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .logout-link a {
+      color: #dc3545;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .logout-link a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+  .nav-actions {
+    flex-direction: column;
+    align-items: flex-end;
+    top: 5px;
+    right: 10px;
+  }
+
+  .dropdown-toggle {
+    font-size: 14px;
+  }
+
+  .welcome-member {
+    font-size: 14px;
+  }
+}
+    
+  </style>
+</head>
+<body>
+
+  <!-- Banner -->
+  <div class="qpark-banner">
+    <div class="layout-wrapper">
+      <div class="banner-header">
+        <div class="header-left">
+          <img class="logo" src="resources/images/logo.png" alt="ABC Parking Logo" />
+        </div>
+
+        <nav class="main-nav">
+          <a href="add-parking.xhtml">Add Parking</a>
+          <a href="view-parkings.xhtml">My Parking Spaces</a>
+          <a href="update-spaces.xhtml">Update Parking Space</a>
+           <a href="releaseParking.xhtml">Release Parking Space</a>
+           <a href="owned-parking-list.xhtml">View List of Owned Parking Spaces</a>
+          <a href="set-prices">Set/update Price</a>
+          
+        </nav>
+
+      <div class="nav-actions">
+  <div class="welcome-member">
+    <h:outputText value="Welcome, #{memberLoginBean.member.companyName}!" rendered="#{not empty memberLoginBean.member}" />
+    <h:outputText value="Welcome, Guest!" rendered="#{empty memberLoginBean.member}" />
+  </div>
+  <div class="profile-dropdown">
+    <i class="fas fa-user-circle"></i>
+    <button class="dropdown-toggle">Profile ▾</button>
+    <div class="dropdown-menu">
+      <a href="memberProfile.xhtml">Edit Profile</a>
+      <a href="memberlogin.xhtml">Logout</a>
+    </div>
+  </div>
+</div>
+</div> 
+  </div> 
+</div>
+
+  <!-- Dashboard Content -->
+  
+
+<div class="layout-wrapper">
+    <div class="raised-container">
+      <div class="tab-container">
+        <div class="tabs">
+          <button class="tab active">Search Parking</button>
+          <button class="tab">Pre-booking</button>
+        </div>
+
+        <div class="tab-content active">
+          <form action="#" method="post">
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="location-info">Where do you want to go? (Enter landmark, street, shop, etc.)</label>
+                <input type="text" id="location-info" name="location-info" placeholder="Search a city or address." />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <button type="submit" class="book-button">
+                <i class="fas fa-search"></i> Search
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular Cities Section -->
+  <div class="layout-wrapper">
+    <div class="city-grid-section">
+      <h2>Popular Cities Nearby Airport</h2>
+      <div class="city-grid">
+        <a href="#" class="city-card" style="background-image: url('resources/images/Dublin.jpg');">
+          <div class="overlay"></div>
+          <div class="city-label">Dublin</div>
+        </a>
+
+        <a href="#" class="city-card" style="background-image: url('resources/images/skerries.jpg');">
+          <div class="overlay"></div>
+          <div class="city-label">Skerries</div>
+        </a>
+
+        <a href="#" class="city-card" style="background-image: url('resources/images/malahide.jpg');">
+          <div class="overlay"></div>
+          <div class="city-label">Malahide</div>
+        </a>
+
+        <a href="#" class="city-card" style="background-image: url('resources/images/swords.jpg');">
+          <div class="overlay"></div>
+          <div class="city-label">Swords</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="container">
+    <footer>
+      <p>&#169; 2025 ABC Parking System</p>
+    </footer>
+  </div>
+
+</body>
+</html>
+
+ 

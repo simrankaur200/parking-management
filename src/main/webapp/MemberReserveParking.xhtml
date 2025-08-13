@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Manage Parking Space</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/MemberReserveParking.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h1>Manage Parking Spaces</h1>
+        <form>
+            <label for="space">Reserve Parking Space:</label>
+            <select id="space" name="space">
+                <option>1A</option>
+                <option>1B</option>
+                <option>1C</option>
+            </select>
+
+
+            <label for="staffId">Staff ID:</label>
+            <input type="text" id="staffId" name="staffId" />
+
+            <label for="staffName">Staff Name:</label>
+            <input type="text" id="staffName" name="staffName" />
+
+            <div class="inline-group">
+                <div class="box-stack">
+                    <label for="availableFrom">Reserve From:</label>
+                    <div class="stacked-fields">
+                        <input type="date" id="availableFrom" name="availableFrom" />
+                        <input type="time" id="availableFromTime" name="availableFromTime" />
+                    </div>
+                </div>
+                <div class="box-stack">
+                    <label for="availableTo">Reserve Until:</label>
+                    <div class="stacked-fields">
+                        <input type="date" id="availableTo" name="availableTo" />
+                        <input type="time" id="availableToTime" name="availableToTime" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button type="submit">Update Reservation</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
